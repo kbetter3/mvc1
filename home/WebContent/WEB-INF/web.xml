@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	
+	<!-- 로그인 필터 적용 -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>home.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/jsp/member/login/*</url-pattern>
+		<url-pattern>/jsp/board/*</url-pattern>
+		<url-pattern>/jsp/admin/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 관리자 필터 적용 -->
+	<filter>
+		<filter-name>adminFilter</filter-name>
+		<filter-class>home.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>adminFilter</filter-name>
+		<url-pattern>/jsp/admin/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 404, 500 상태값에 대한 오류 페이지 설정 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/404.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsp/error/500.jsp</location>
+	</error-page>		
+
+	<!-- session 타임아웃 무제한 설정 -->
+	<session-config>
+		<session-timeout>-1</session-timeout>
+	</session-config>
+	
+</web-app>
+
+
